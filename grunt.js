@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: [ '<config:lint.files>', 'share/*', 'examples/**' ],
+      files: [ '<config:lint.files>', 'share/*', 'examples/**', '../state/eqm/webapps/state/styles/**' ],
       // tasks: 'lint min cssmin copy'
       tasks: 'default'
     },
@@ -54,7 +54,8 @@ module.exports = function(grunt) {
     },
     shell: {
       generate_styles: {
-        command: "node bin/styledocco ./examples/bootstrap",
+        // command: "node bin/styledocco ./examples/example.scss",
+        command: "node bin/styledocco -n 'State of UI' --include share/previews.css -o ../state/eqm/webapps/state/ui-styleguide ../state/eqm/webapps/state/styles/modules",
         stdout: true
       }
     }

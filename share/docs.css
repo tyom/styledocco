@@ -65,7 +65,7 @@ split into a new section with a pair of documentation and CSS code.
   padding: 5px;
   background: #f3f5f8;
   opacity: .6;
-  margin: 40px 20px;
+  margin: 60px 2%;
   overflow: auto;
   border-radius: 4px;
   box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
@@ -90,22 +90,23 @@ height will be automatically adjusted to fit the content. <small>Free hand
 resizing currently only works properly in Firefox. In WebKit browsers you can
 only enlarge the previews and other browsers have not implemented CSS `resize`
 </small>. */
-.preview {
+div.preview {
   position: relative;
   z-index: 1;
-  margin: 20px 0;
+  margin: 30px 0 10px;
 }
 .preview:before {
   content: "Try";
-  color: #9a9567;
+  color: #fff;
   position: absolute;
-  background: #eeeac6;
+  background: #ccc;
   text-align: center;
-  line-height: 34px;
-  height: 34px;
+  line-height: 33px;
+  height: 33px;
   left: -50px;
   width: 50px;
-  bottom: -54px;
+  bottom: -43px;
+  cursor: default;
 }
 .preview iframe {
   display: block;
@@ -128,12 +129,16 @@ automatically resized to fit the text inside.
   max-height: 200px;
   padding: 10px;
   overflow-y: auto;
-  background: #fcf8f3;
-  border: 1px solid rgba(0,0,0,.2);
+  background: #f9f9f9;
+  /*border: 1px solid rgba(0,0,0,.2);*/
   box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-  line-height: 1.1 !important;
+  line-height: 1.1;
+  font-size: 12px;
   resize: none;
-  position: relative;
+  margin-bottom: 30px;
+  -webkit-transition: 120ms;
+  -moz-transition: 120ms;
+  transition: 120ms;
 /*  -webkit-transition: height .1s ease-out;
   -moz-transition:    height .1s ease-out;
   -o-transition:      height .1s ease-out;
@@ -142,7 +147,7 @@ automatically resized to fit the text inside.
   .preview-code:focus {
     outline: 0;
     background: #fff6d1;
-    box-shadow: 0 0 5px #ffdd8c;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 1px rgba(0,0,0,.1), 0 0 4px #ffdd8c;
     border-color: rgba(0,0,0,.3);
   }
   .preview-code:last-child {
@@ -153,16 +158,19 @@ automatically resized to fit the text inside.
 resized with the CSS `resize` property. */
 .resizeable {
   padding: 15px;
+  min-height: 23px;
+  min-width: 100%;
   overflow: auto;
   background: #efefec;
   border-radius: 6px;
   resize: both;
+  position: relative;
 }
 .resizeable:before {
   content: "preview";
   text-transform: uppercase;
   position: absolute;
-  right: 15px;
+  right: 7px;
   top: 7px;
   font-size: 7px;
   color: #bbb;
@@ -199,12 +207,12 @@ Fixed to top with a small drop shadow.
 }
 .bar.top {
   top: 0;
-  box-shadow: 0 1px 2px hsla(207, 5%, 0%, .2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
 }
 .bar.bottom {
   display: none;
   bottom: 0;
-  box-shadow: 0 -1px 2px hsla(207, 5%, 0%, .2);
+  box-shadow: 0 -1px 2px rgba(0,0,0,.3);
 }
 .bar ul {
   margin: 0 !important;
@@ -265,7 +273,7 @@ Fixed to top with a small drop shadow.
   text-shadow: 0 -1px 0 rgba(0,0,0,.4);
 }
   .brand:hover, a.brand:hover {
-    color: #777;
+    color: #fff;
     text-shadow: 0 1px 0 rgba(0,0,0,.4);
     text-decoration: none;
   }
@@ -453,8 +461,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 40px 0 0;
 }
   h1:first-of-type {
-    text-transform: uppercase;
-    font-size: 24px;
+    font-variant: small-caps;
+    font-size: 28px;
+    line-height: 1.1;
+    cursor: default;
   }
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;

@@ -97,6 +97,7 @@ var preprocess = function(file, pp, options, cb) {
     process.nextTick(function() { cb(null, ''); });
   } else if (pp != null) {
     exec(pp + ' ' + file, function(err, stdout, stderr) {
+      console.log(stderr);
       // log('styledocco: preprocessing ' + file + ' with ' + pp);
       // Fail gracefully on preprocessor errors
       if (err != null && options.verbose) console.error(err.message);

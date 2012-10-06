@@ -208,7 +208,7 @@ doc.body.addEventListener('click', function(ev) {
   var activateDropdown = false;
   var elem = ev.target;
   if (elem.dataset.toggle != null) {
-    event.preventDefault();
+    ev.preventDefault();
     // Clicked on an inactive dropdown toggle
     if (!elem.classList.contains('is-active')) activateDropdown = true;
   }

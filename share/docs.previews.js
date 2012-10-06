@@ -111,7 +111,7 @@ _(doc.querySelectorAll('textarea.preview-code')).forEach(function(codeEl) {
   renderPreview(codeEl, function(err, iFrameEl) {
     if (err) return;
     codeEl.parentNode.insertBefore(
-      el('.preview', [ el('.resizeable', [ el(iFrameEl, { scrolling: 'no' }) ]) ]),
+      el('.preview', [ el('.resizeable', [ el(iFrameEl, { scrolling: 'no', tabindex: -1 }) ]) ]),
       codeEl
     );
   });
