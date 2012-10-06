@@ -16,20 +16,26 @@ Main layout
 */
 body {
   /* Top/bottom paddings for bars */
-  padding: 60px 0 40px;
-  background-color: hsl(207, 10%, 90%);
-  color: hsl(207, 5%, 30%);
+  padding: 40px 0;
+  color: #444;
+  background: #fff;
 }
-/* The page content has a maximum width of 1500 pixels. */
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+
 .section {
+  overflow: hidden;
   position: relative;
-  margin-bottom: 20px;
+  min-height: 200px;
+  border-top: 2px dotted #ccc;
 }
+.section:first-child {
+  border: 0;
+}
+
+body > section {
+  padding-top: 20px;
+}
+
+
 /* When StyleDocco encounters a first level heading, the documentation is
 split into a new section with a pair of documentation and CSS code.
 
@@ -43,35 +49,33 @@ split into a new section with a pair of documentation and CSS code.
 ``` */
 .docs {
   position: relative;
-  z-index: 2;
-  width: 68%;
-  min-height: 200px;
-  background-color: hsl(207, 0%, 100%);
-  background-clip: padding-box;
-  border: 1px solid hsla(207, 5%, 5%, .1);
-  border-radius: 5px;
-  box-shadow: 0 0 3px hsla(207, 5%, 5%, .1);
+  float: left;
+  width: 52%;
+  padding: 20px 0 20px 30px;
 }
 .code {
   position: absolute;
-  top: 5px; bottom: 5px;
   right: 0;
-  z-index: 1;
-  width: 33%;
-  padding: 10px 10px 10px 20px;
-  border-radius: 0 5px 5px 0;
-  border: 1px solid hsla(207, 20%, 10%, .1);
-  background-color: hsla(207, 20%, 95%, .9);
-  background-clip: padding-box;
-  opacity: .5;
-  -webkit-transition: opacity .4s;
-  -moz-transition:    opacity .4s;
-  -o-transition:      opacity .4s;
-  transition:         opacity .4s;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  padding: 5px;
+  background: #e0e3e4;
+  opacity: .6;
+  margin: 20px;
+  overflow: auto;
+  border-radius: 4px;
+  -webkit-transition: opacity .2s;
+  -moz-transition:    opacity .2s;
+  -o-transition:      opacity .2s;
+  transition:         opacity .2s;
 }
-  .code:hover {
-    opacity: 1;
+  .code pre {
+    padding: 20px;
   }
+.section:hover .code {
+  opacity: .99;
+}
 
 /* # Previews and code
 Previews are rendered in sandboxed iframes with the documented CSS applied.
@@ -119,10 +123,10 @@ automatically resized to fit the text inside.
   box-shadow: inset 0 1px 2px hsla(207, 30%, 10%, .1);
   line-height: 1.1 !important;
   resize: none;
-  -webkit-transition: height .1s ease-out;
+/*  -webkit-transition: height .1s ease-out;
   -moz-transition:    height .1s ease-out;
   -o-transition:      height .1s ease-out;
-  transition:         height .1s ease-out;
+  transition:         height .1s ease-out;*/
 }
   .preview-code:focus {
     outline: 0;
@@ -166,17 +170,11 @@ Fixed to top with a small drop shadow.
 .bar {
   position: fixed;
   left: 0; right: 0;
-  z-index: 1010;
+  z-index: 10;
   min-height: 40px;
   line-height: 40px;
-  background-image: -webkit-linear-gradient(hsla(207, 10%, 35%, .97),
-                                            hsla(207, 5%, 25%, .92));
-  background-image:    -moz-linear-gradient(hsla(207, 10%, 35%, .97),
-                                            hsla(207, 5%, 25%, .92));
-  background-image:      -o-linear-gradient(hsla(207, 10%, 35%, .97),
-                                            hsla(207, 5%, 25%, .92));
-  background-image:         linear-gradient(hsla(207, 10%, 35%, .97),
-                                            hsla(207, 5%, 25%, .92));
+  background: rgba(0,0,0,.8);
+  padding: 0 20px;
 }
 .bar.top {
   top: 0;
@@ -226,6 +224,7 @@ Fixed to top with a small drop shadow.
       color: hsl(27, 10%, 95%);
       text-shadow: 1px 1px 0 hsla(27, 5%, 0%, 1);
       text-decoration: none;
+      background: rgba(0,0,0,.3);
     }
 /* ```
 <div class="bar top"><a href="#" class="brand">Site name</a></div>
@@ -238,12 +237,12 @@ Fixed to top with a small drop shadow.
   text-decoration: none;
 }
 .brand, a.brand, a.brand:visited {
-  color: hsl(27, 5%, 5%);
-  text-shadow: 1px 1px 0 hsla(27, 5%, 100%, .2);
+  color: #111;
+  text-shadow: 0 1px 0 rgba(255,255,255,.14);
 }
   .brand:hover, a.brand:hover {
-    color: hsl(27, 5%, 0%);
-    text-shadow: 1px 1px 0 hsla(27, 5%, 100%, .3);
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.2);
     text-decoration: none;
   }
 
@@ -263,7 +262,7 @@ Fixed to top with a small drop shadow.
     </div>
 */
 .menu {
-  font-size: 12px;
+  font-size: 14px;
 }
 .menu > li {
   float: left;
@@ -271,18 +270,22 @@ Fixed to top with a small drop shadow.
 }
 .menu a {
   display: block;
-  margin-right: 15px;
+  padding: 0 10px;
 }
 
-.dropdown-toggle {
+.menu a.is-active {
+  background: rgba(0,0,0,.4);
+}
+
+a.dropdown-toggle {
   position: relative;
-  padding-right: 15px;
+  padding-right: 24px;
 }
  /* Arrow */
 .dropdown-toggle:after {
   display: block;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 18px;
   content: '';
   border: 4px solid;
@@ -294,26 +297,24 @@ Fixed to top with a small drop shadow.
 .dropdown {
   position: absolute;
   z-index: 1020;
-  top: 32px;
-  left: -16px;
-  width: 175px;
-  max-height: 500px;
-  padding: 10px 0;
+  top: 40px;
+  left: -10px;
+  width: 180px;
+  max-height: 580px;
+  padding: 5px 0;
   overflow-y: auto;
   word-wrap: break-word;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 20px;
-  background-color: hsla(207, 10%, 25%, .97);
-  border: 1px solid hsla(207, 5%, 70%, .3);
-  border-radius: 3px;
-  box-shadow: 0 0 3px hsla(207, 5%, 0%, .2);
+  background-color: rgba(0,0,0,.8);
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
 }
 .toc-list {
   width: 200px;
 }
 .nav-results {
   right: 0;
-  width: 200px;
+  width: 24em;
   left: auto;
   padding: 5px 0;
 }
@@ -329,32 +330,29 @@ Fixed to top with a small drop shadow.
 }
  /* Match everything after the first non-hidden `li`. */
 .nav-results li:not([hidden]) ~ li a {
-  border-top: 1px solid hsla(27, 10%, 90%, .1);
+  border-top: 1px solid rgba(255,255,255,.1);
 }
 .dropdown a {
   padding: 0 15px;
-}
-.dropdown li:hover {
-  background-color: hsl(207, 10%, 22%);
 }
 .nav {
   float: right;
   position: relative;
 }
 .nav input[type="search"] {
-  padding: 2px 4px;
-  color: #fff;
+  padding: 4px;
+  color: #444;
   width: 150px;
-  border: 1px solid hsla(207, 5%, 0%, .3);
-  background: hsla(207, 12%, 40%, .9);
-  box-shadow: inset 1px 1px 3px hsla(207, 5%, 0%, .05),
-                    1px 1px 0 hsla(207, 5%, 100%, .05);
+  border: #222;
+  background: rgba(255,255,255,.2);
   border-radius: 10px;
   -webkit-appearance: textfield;
+  -webkit-transition: 200ms;
 }
   .nav input[type="search"]:focus {
     outline: 0;
-    background: hsla(207, 7%, 45%, .9);
+    width: 24em;
+    background: rgba(255,255,255,.8);
   }
 
 
@@ -429,14 +427,15 @@ p:last-child, ol:last-child, ul:last-child, dl:last-child {
     <h6>Heading 6</h3> */
 hr,
 h1, h2, h3, h4, h5, h6 {
-  margin: 1em 20px .5em;
+  margin: 20px 20px 10px;
 }
   h1:first-of-type {
-    margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 24px;
   }
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
-  color: hsl(207, 10%, 50%);
+  color: #555;
 }
 h1 a, h1 a:hover, h1 a:visited {
   color: inherit;
@@ -445,13 +444,14 @@ h1 a, h1 a:hover, h1 a:visited {
 h1 {
   font-size: 3.052em;
   font-weight: normal;
-  color: hsl(207, 10%, 45%);
+  color: #629022;
+  margin: 0 20px;
 }
 h2 {
-  font-size: 1.953em;
+  font-size: 1.6em;
 }
 h3 {
-  font-size: 1.536em;
+  font-size: 1.4em;
 }
 h1, h2, h3 {
   letter-spacing: -.025em;
@@ -468,7 +468,8 @@ h6 {
 }
 .permalink {
   position: absolute;
-  top: 15px; right: 15px;
+  top: 15px;
+  left: 13px;
 }
 
 /*
