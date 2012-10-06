@@ -42,11 +42,14 @@ var sameOriginDataUri = (function() {
 // [Boolean] -> [HTMLIFrameElement]
 var createLocalIFrame = (function() {
   var dataUriSrc = 'data:text/html;charset=utf-8,' +
-      encodeURIComponent('<!doctype html><html><head></head><body>');
+      encodeURIComponent('<!doctype html><html><head></head><body style="margin:0;padding:0">');
   var fallbackSrc = location.href.split('#')[0] + '#__sandbocss__';
+
   return function(dataUriSameOrigin) {
     var iframeEl = doc.createElement('iframe');
+    // ! Fails in Chrome
     iframeEl.src = dataUriSameOrigin ? dataUriSrc : fallbackSrc;
+    // iframeEl.src = fallbackSrc;
     return iframeEl;
   };
 })();

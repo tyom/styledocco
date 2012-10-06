@@ -25,6 +25,7 @@
     "grunt": "0.3.x",
     "grunt-browserify": "0.1.x",
     "grunt-contrib": "0.1.x",
+    "grunt-shell": "0.1.x",
     "jshint": "0.7.x"
   },
   "main": "./styledocco",

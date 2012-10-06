@@ -25,10 +25,13 @@ body {
   overflow: hidden;
   position: relative;
   min-height: 200px;
-  border-top: 2px dotted #ccc;
+  border-top: 4px solid #ddd;
+  padding: 40px 0;
+  box-shadow: 0 -2px 0 #ccc;
 }
 .section:first-child {
   border: 0;
+  box-shadow: none;
 }
 
 body > section {
@@ -50,8 +53,8 @@ split into a new section with a pair of documentation and CSS code.
 .docs {
   position: relative;
   float: left;
-  width: 52%;
-  padding: 20px 0 20px 30px;
+  width: 51%;
+  padding: 20px 0 20px 50px;
 }
 .code {
   position: absolute;
@@ -60,11 +63,12 @@ split into a new section with a pair of documentation and CSS code.
   bottom: 0;
   width: 45%;
   padding: 5px;
-  background: #e0e3e4;
+  background: #f3f5f8;
   opacity: .6;
-  margin: 20px;
+  margin: 40px 20px;
   overflow: auto;
   border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
   -webkit-transition: opacity .2s;
   -moz-transition:    opacity .2s;
   -o-transition:      opacity .2s;
@@ -87,15 +91,22 @@ resizing currently only works properly in Firefox. In WebKit browsers you can
 only enlarge the previews and other browsers have not implemented CSS `resize`
 </small>. */
 .preview {
-  background: hsl(207, 0%, 100%);
-  border-top: 1px solid hsl(207, 30%, 95%);
   position: relative;
   z-index: 1;
+  margin: 20px 0;
 }
-  .preview-code + .preview {
-    margin-top: 0;
-    border-top: 0;
-  }
+.preview:before {
+  content: "Try";
+  color: #9a9567;
+  position: absolute;
+  background: #eeeac6;
+  text-align: center;
+  line-height: 34px;
+  height: 34px;
+  left: -50px;
+  width: 50px;
+  bottom: -54px;
+}
 .preview iframe {
   display: block;
   width: 100%;
@@ -113,16 +124,16 @@ automatically resized to fit the text inside.
   z-index: 2;
   display: block;
   width: 100%;
-  color: hsl(207, 9%, 37%);
+  color: #444;
   max-height: 200px;
-  padding: 10px 20px;
+  padding: 10px;
   overflow-y: auto;
-  background: hsl(207, 30%, 95%);
-  border: 1px solid hsl(207, 30%, 85%);
-  border-left: 0; border-right;
-  box-shadow: inset 0 1px 2px hsla(207, 30%, 10%, .1);
+  background: #fcf8f3;
+  border: 1px solid rgba(0,0,0,.2);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
   line-height: 1.1 !important;
   resize: none;
+  position: relative;
 /*  -webkit-transition: height .1s ease-out;
   -moz-transition:    height .1s ease-out;
   -o-transition:      height .1s ease-out;
@@ -130,9 +141,9 @@ automatically resized to fit the text inside.
 }
   .preview-code:focus {
     outline: 0;
-    background: hsl(207, 30%, 97%);
-    box-shadow: inset 0 1px 2px hsla(207, 30%, 10%, .1),
-                0 0 5px hsla(207, 75%, 75%, .9);
+    background: #fff6d1;
+    box-shadow: 0 0 5px #ffdd8c;
+    border-color: rgba(0,0,0,.3);
   }
   .preview-code:last-child {
     border-bottom: 0;
@@ -143,9 +154,19 @@ resized with the CSS `resize` property. */
 .resizeable {
   padding: 15px;
   overflow: auto;
-  background: hsl(207, 0%, 100%);
-  box-shadow: 0 0 2px hsla(207, 10%, 20%, .2);
+  background: #efefec;
+  border-radius: 6px;
   resize: both;
+}
+.resizeable:before {
+  content: "preview";
+  text-transform: uppercase;
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  font-size: 7px;
+  color: #bbb;
+  cursor: default;
 }
 /* No code is allowed to overflow horizontally. */
 .preview-code, pre {
@@ -173,7 +194,7 @@ Fixed to top with a small drop shadow.
   z-index: 10;
   min-height: 40px;
   line-height: 40px;
-  background: rgba(0,0,0,.8);
+  background: rgba(0,0,0,.84);
   padding: 0 20px;
 }
 .bar.top {
@@ -181,6 +202,7 @@ Fixed to top with a small drop shadow.
   box-shadow: 0 1px 2px hsla(207, 5%, 0%, .2);
 }
 .bar.bottom {
+  display: none;
   bottom: 0;
   box-shadow: 0 -1px 2px hsla(207, 5%, 0%, .2);
 }
@@ -216,15 +238,16 @@ Fixed to top with a small drop shadow.
   pointer-events: none;
 }
 .bar, .bar a, .bar a:visited {
-  color: hsl(27, 10%, 85%);
-  text-shadow: 1px 1px 0 hsla(27, 5%, 0%, .5);
+  color: #666;
 }
-    .bar a:hover,
-    .bar a.is-active {
-      color: hsl(27, 10%, 95%);
-      text-shadow: 1px 1px 0 hsla(27, 5%, 0%, 1);
+    .bar a:hover {
+      color: #fff;
+      background: rgba(0,0,0,.4);
       text-decoration: none;
-      background: rgba(0,0,0,.3);
+    }
+    .bar a.is-active {
+      color: #fff;
+      background: rgba(0,0,0,.8);
     }
 /* ```
 <div class="bar top"><a href="#" class="brand">Site name</a></div>
@@ -232,17 +255,18 @@ Fixed to top with a small drop shadow.
 .brand {
   float: left;
   margin-right: 20px;
+  padding: 0 10px;
   font-weight: bold;
   font-size: 16px;
   text-decoration: none;
 }
 .brand, a.brand, a.brand:visited {
-  color: #111;
-  text-shadow: 0 1px 0 rgba(255,255,255,.14);
+  color: #666;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.4);
 }
   .brand:hover, a.brand:hover {
-    color: #000;
-    text-shadow: 0 1px 0 rgba(255,255,255,.2);
+    color: #777;
+    text-shadow: 0 1px 0 rgba(0,0,0,.4);
     text-decoration: none;
   }
 
@@ -306,8 +330,10 @@ a.dropdown-toggle {
   word-wrap: break-word;
   font-size: 12px;
   line-height: 20px;
-  background-color: rgba(0,0,0,.8);
-  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  border: 1px solid rgba(0,0,0,.4);
+  border-top: 0;
+  background-color: rgba(255,255,255,.9);
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
 }
 .toc-list {
   width: 200px;
@@ -333,14 +359,14 @@ a.dropdown-toggle {
   border-top: 1px solid rgba(255,255,255,.1);
 }
 .dropdown a {
-  padding: 0 15px;
+  padding: 5px 15px;
 }
 .nav {
   float: right;
   position: relative;
 }
 .nav input[type="search"] {
-  padding: 4px;
+  padding: 4px 8px;
   color: #444;
   width: 150px;
   border: #222;
@@ -348,6 +374,7 @@ a.dropdown-toggle {
   border-radius: 10px;
   -webkit-appearance: textfield;
   -webkit-transition: 200ms;
+  -moz-transition: 200ms;
 }
   .nav input[type="search"]:focus {
     outline: 0;
@@ -398,14 +425,10 @@ as side margins.
     <p>Paragraph #1
     <p>Paragraph #2
     <ul><li>List</ul> */
-.docs pre, p, ol, ul, dl,
-figure, blockquote, table {
-  margin-left: 20px; margin-right: 20px;
-}
 .preview, .docs pre,
 p, ol, ul, dl,
 figure, blockquote, table {
-  margin-top: 10px;
+  margin-top: 20px;
 }
   ul ul, ol ol, ul ol, ol ul,
   blockquote p:last-child {
@@ -427,7 +450,7 @@ p:last-child, ol:last-child, ul:last-child, dl:last-child {
     <h6>Heading 6</h3> */
 hr,
 h1, h2, h3, h4, h5, h6 {
-  margin: 20px 20px 10px;
+  margin: 40px 0 0;
 }
   h1:first-of-type {
     text-transform: uppercase;
@@ -442,10 +465,9 @@ h1 a, h1 a:hover, h1 a:visited {
   text-decoration: inherit;
 }
 h1 {
-  font-size: 3.052em;
-  font-weight: normal;
-  color: #629022;
-  margin: 0 20px;
+  font-size: 3em;
+  color: #b85d72;
+  margin: 0;
 }
 h2 {
   font-size: 1.6em;
@@ -469,7 +491,7 @@ h6 {
 .permalink {
   position: absolute;
   top: 15px;
-  left: 13px;
+  left: 10px;
 }
 
 /*

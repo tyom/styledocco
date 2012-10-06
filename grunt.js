@@ -35,8 +35,9 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: [ '<config:lint.files>', 'share/*' ],
-      tasks: 'lint min cssmin copy'
+      files: [ '<config:lint.files>', 'share/*', 'examples/**' ],
+      // tasks: 'lint min cssmin copy'
+      tasks: 'default'
     },
     jshint: {
       options: {
@@ -50,12 +51,20 @@ module.exports = function(grunt) {
         styledocco: true,
         buster: true, assert: true, refute: true, test: true
       }
+    },
+    shell: {
+      generate_styles: {
+        command: "node bin/styledocco ./examples/bootstrap",
+        stdout: true
+      }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'browserify min mincss copy');
+  grunt.registerTask('default', 'browserify min mincss copy shell');
   grunt.registerTask('dev', 'browserify copy');
-  grunt.loadNpmTasks("grunt-contrib"); 
+
+  grunt.loadNpmTasks("grunt-contrib");
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-shell');
 };
