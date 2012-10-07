@@ -1,5 +1,22 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
 body {
-  padding: 0;
+  padding: 5px;
   margin: 0;
   font: 13px/1.4 Arial, sans-serif;
+  background: #fff;
+}
+
+.grid-container:not(.flexible) {
+    width: 100%;
+    min-width: 0;
+}
+.grid-container .col {
+    background: #eee;
+    padding: 10px;
+    min-height: 100px;
 }

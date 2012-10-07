@@ -19,7 +19,9 @@ html
   body
     nav.bar.top.cf
       .container
-        a.brand(href="index.html") #{project.name}
+        a.brand(href="index.html")
+          span #{project.name}
+          = "UI Styleguide"
         ul.menu
           - var dropdownid = 0
           each links, folder in project.menu
